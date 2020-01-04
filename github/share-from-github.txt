@@ -1,0 +1,28 @@
+bottom fucking line: || tl;dr:
+
+append the following:
+?raw=true
+
+
+/\/\/\/\\/\/\/\/\/\/\/\\\\\/\/\/\\\/\/\\\/\/\/\
+while both google and github are similar I'll keep this one short.
+
+for full deets go fucking look in the google drive on (lift and sift nagga)
+
+or for the lazy:
+https://github.com/xbl3/gDirect/blob/master/gdrive/share-from-google-drive.txt
+
+
+
+github only needs: 
+?raw=true
+
+
+
+example:
+https://github.com/xbl3/BATCHelor/blob/master/bin/fdf.exe 
+{ dont do shit and can't download direct (outside tools) }
+
+
+https://github.com/xbl3/BATCHelor/blob/master/bin/fdf.exe?raw=true
+[ fuckin money ]
