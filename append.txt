@@ -1,0 +1,7 @@
+Append to base URL
+
+google:
+uc?export=download&id=
+
+github:
+?raw=true
