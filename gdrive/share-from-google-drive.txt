@@ -1,0 +1,107 @@
+Super simple transfromation of the url
+
+bottom fucking line: || tl;dr:
+
+append the following:
+uc?export=download&id=
+
+ie
+https://drive.google.com/uc?export=download&id=
+
+fin
+
+
+/\/\/\/\\/\/\/\/\/\/\/\\\\\/\/\/\\\/\/\\\/\/\/\
+
+All that's required really is the "id" / hash from the generated link once enabled on the file
+
+examples:
+# this was done via shared drive but sure same applies to my drive as well
+
+
+usual style if using right-click get share link:
+		( get the pop-up saying link was copied to clipboard )
+
+https://drive.google.com/open?id=MyHaHs1dFnGuyHwns
+
+
+usual style if shared from team/shared drive:
+		( this is after doing the allow external access etc to avoid login/domain membership )
+
+https://drive.google.com/a/example.com/file/d/MyHaHs1dFnGuyHwns/view?usp=sharing
+
+
+
+transformation:
+dump all the shit
+append:
+
+uc?export=download&id= || uc?id=&export=download
+
+( I guess there's two differnet ways as the placement doesn't matter )
+	[uc?export=download&id=]
+
+{ testing with wget used above style - screens on the download button has it as }
+	[uc?id=&export=download]
+
+so using the guy fawks / fucking guy hawkins Oo? hash id example (that was really part of the hash)
+
+!	https://drive.google.com/uc?export=download&id=MyHaHs1dFnGuyHwns
+
+will direct download with whatever (tested with wget)
+
+the reverse version should also apply by placing hash in middle ie
+
+!	https://drive.google.com/uc?id=MyHaHs1dFnGuyHwns&export=download
+
+will probably make it more of a pain especially if doing it manually from cli
+
+
+Tested reverse and same applies
+
+
+if using wget, to avoid the break or weird output, us the flag -O or --output-document !name!
+
+so in conclusion
+AIO:
+
+AIO-wget:
+wget "https://drive.google.com/uc?export=download&id=MyHaHs1dFnGuyHwns" -O myfile.extension
+||
+wget "https://drive.google.com/uc?id=MyHaHs1dFnGuyHwns&export=download" --output-document myfile.extension
+
+AIO-rclone:
+rclone copyurl "https://drive.google.com/uc?export=download&id=MyHaHs1dFnGuyHwns" myfile.extension
+|| (if direct to a remote)
+rclone copyurl "https://drive.google.com/uc?id=MyHaHs1dFnGuyHwns&export=download" myremote:myfile.extension
+
+rclone requires a target on copyurl so using root/directory no bueno
+you'll be met with 2020/01/04 05:53:15 "D:\\" is a directory 
+{using D: flat results in null}[rclone won't warn you but nothings there so silent fail esentially]
+
+
+TESTED-IO
+kinda redundant but meh-
+from drive share out via rclone copyurl -- right back to drive as remote
+rclone copyurl "https://drive.google.com/uc?export=download&id=MyHaHs1dFnGuyHwns" 0:testIO/io.txt --drive-team-drive "$TEAMDRIVEHASH" --drive-service-account-file "\\push\sa\$PROJECTNAME-saHASH.json"
+
+results:
+#	list
+rclone lsf 0:testIO --absolute --files-only --drive-team-drive "$TEAMDRIVEHASH" --drive-service-account-file "\\push\sa\$PROJECTNAME-saHASH.json"
+/io-proper.txt
+/io.txt
+
+#	cat
+rclone cat 0:testIO/io-proper.txt --drive-team-drive "$TEAMDRIVEHASH" --drive-service-account-file "\\push\sa$PROJECTNAME-saHASH.json"
+fucking idiot!
+
+
+:notes
+While I didn't pay attention, ended up using same team drive both as source and destination, but I bet dollars to donuts that same applies across the board regardless.
+
+
+
+
+
+you really only need
+uc?export=download&id=
